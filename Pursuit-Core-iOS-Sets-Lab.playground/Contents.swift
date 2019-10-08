@@ -12,7 +12,12 @@ var numbersWithNoDuplicates = [Int]()
 
 // Your code here
 
-//assert(numbersWithNoDuplicates == [1,2,4,6,7,8], "Was expecting [1,2,4,6,7,8], but got \(numbersWithNoDuplicates)")
+let arrayNumbersWithNoDuplicates = [numbers]
+let setNumberswithNoDuplicates = Set(arrayNumbersWithNoDuplicates)
+if numbersWithNoDuplicates = setNumberswithNoDuplicates
+
+
+assert(numbersWithNoDuplicates == [1,2,4,6,7,8], "Was expecting [1,2,4,6,7,8], but got \(numbersWithNoDuplicates)")
 
 // Questions Two
 
