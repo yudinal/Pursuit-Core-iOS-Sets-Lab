@@ -8,14 +8,9 @@ import UIKit
 
 let numbers = [1,1,2,4,4,4,6,6,7,8]
 
-var numbersWithNoDuplicates = [Int]()
+let numbersWithNoDuplicates = Set(numbers).sorted()
 
 // Your code here
-
-let arrayNumbersWithNoDuplicates = [numbers]
-let setNumberswithNoDuplicates = Set(arrayNumbersWithNoDuplicates)
-if numbersWithNoDuplicates = setNumberswithNoDuplicates
-
 
 assert(numbersWithNoDuplicates == [1,2,4,6,7,8], "Was expecting [1,2,4,6,7,8], but got \(numbersWithNoDuplicates)")
 
@@ -28,8 +23,22 @@ let scores = [1, 77, 83, 32, 77, 77, 83, 32, 99]
 var scoresThatAppearOnce = [Int]()
 
 // Your code here
+var uniqueNumber = Set<Int>()
+var nonUnique = Set<Int>()
 
-//assert(scoresThatAppearOnce == [1, 99], "Was expecting [1, 99], but got \(scoresThatAppearOnce)")
+for score in scores {
+    if uniqueNumber.contains(score) {
+        uniqueNumber.remove(score)
+        nonUnique.insert(score)
+    } else if nonUnique.contains(score){
+       continue
+    } else {
+        uniqueNumber.insert(score)
+    }
+}
+
+scoresThatAppearOnce = Array(uniqueNumber).sorted()
+assert(scoresThatAppearOnce == [1, 99], "Was expecting [1, 99], but got \(scoresThatAppearOnce)")
 
 // Question Three
 
@@ -42,9 +51,14 @@ let arrTwo = [3,4,5,6,7]
 
 var arrThree: [Int] = []
 
-// Your code here
 
-//assert(arrThree == [1,2,3,4,5,6,7], "Was expecting [1,2,3,4,5,6,7], but got \(arrThree)")
+// Your code here
+let arrOneSet = Set(arrOne)
+let arrTwoSet = Set(arrTwo)
+
+arrThree = arrOneSet.union(arrTwoSet).sorted()
+
+assert(arrThree == [1,2,3,4,5,6,7], "Was expecting [1,2,3,4,5,6,7], but got \(arrThree)")
 
 // b.
 
@@ -56,8 +70,11 @@ let arrFive = [3,4,5,6,7]
 var arrSix: [Int] = []
 
 // Your code here
+let arrFourSet = Set(arrFour)
+let arrFiveSet = Set(arrFive)
+arrSix = arrFourSet.intersection(arrFiveSet).sorted()
 
-//assert(arrSix == [3,4,5], "Was expecting [3,4,5], but got \(arrSix)")
+assert(arrSix == [3,4,5], "Was expecting [3,4,5], but got \(arrSix)")
 
 // Question Four
 
@@ -72,7 +89,14 @@ var allNumsWithNoDuplicates: [Int] = []
 
 // Your code here
 
-//assert(allNumsWithNoDuplicates == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "Was expecting [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], but got \([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])")
+let numOneSet = Set(numsOne)
+let numTwoSet = Set(numsTwo)
+let numThreeSet = Set(numsThree)
+let numFourSet = Set(numsFour)
+
+allNumsWithNoDuplicates = Array(numOneSet.union(numTwoSet.union(numThreeSet.union(numFourSet)))).sorted()
+
+assert(allNumsWithNoDuplicates == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "Was expecting [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], but got \([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])")
 
 
 // Question Five
@@ -91,9 +115,26 @@ var strThreeIsPangram: Bool = false
 
 // Your code here
 
-//assert(strOneIsPangram == true, "Was expecting true, but got \(strOneIsPangram)")
-//assert(strTwoIsPangram == false, "Was expecting false, but got \(strTwoIsPangram)")
-//assert(strThreeIsPangram == true, "Was expecting false, but got \(strThreeIsPangram)")
+let strOneSet = Set(strOne.lowercased())
+let strTwoSet = Set(strTwo.lowercased())
+let strThreeSet = Set(strThree.lowercased())
+var alphabit: Set<Character> = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+
+if strOneSet.isSuperset(of: alphabit) {
+    strOneIsPangram = true
+}
+
+if strTwoSet.isSuperset(of: alphabit) {
+    strTwoIsPangram = true
+}
+
+if strThreeSet.isSuperset(of: alphabit) {
+    strThreeIsPangram = true
+}
+
+assert(strOneIsPangram == true, "Was expecting true, but got \(strOneIsPangram)")
+assert(strTwoIsPangram == false, "Was expecting false, but got \(strTwoIsPangram)")
+assert(strThreeIsPangram == true, "Was expecting false, but got \(strThreeIsPangram)")
 
 
 
